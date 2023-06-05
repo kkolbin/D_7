@@ -1,0 +1,22 @@
+{% extends 'news/default.html' %}
+
+{% block title %}Результаты поиска{% endblock %}
+
+{% block content %}
+    <h2>Результаты поиска</h2>
+    {% if news %}
+        <ul>
+            {% for post in news %}
+                <li>
+                    <h3><a href="{% url 'news:article_detail' post.pk %}">{{ post.title }}</a></h3>
+                    <p>Автор: {{ post.author}}</p>
+                    <p>Дата публикации: {{ post.created_at }}</p>
+                    <p>Рейтинг: {{ post.rating }}</p>
+                    <p>{{ post.content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ничего не найдено.</p>
+    {% endif %}
+{% endblock %}
